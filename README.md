@@ -32,8 +32,6 @@ Then, run each cell from the following notebooks to go through the entire data p
 
 2. Mix both proposals and keep the best of both.
 
-3. 
-
 ## License
 
 MIT License
