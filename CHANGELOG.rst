@@ -6,6 +6,7 @@ Changelog for Hackathon BBVA 2022
 ------------------
 * Add House_predictions.ipynb
 * Add Dataset/pe_properties.csv
+* Add .gitignore file
 0.0.1 (2022-10-04)
 ------------------
 * Initial setup files
