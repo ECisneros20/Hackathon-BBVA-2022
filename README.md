@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains the data preprocessing in order to get the most adequate machine learning model for the Hackathon BBVA 2022.afasfasd
+This repository contains the data preprocessing in order to get the most adequate machine learning model for the Hackathon BBVA 2022.
 
 ## Installation
 
