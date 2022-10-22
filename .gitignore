@@ -8,3 +8,4 @@ venv/
 *.job
 /dataset.xlsx
 /dataset/*.joblib
+__pycache__/
