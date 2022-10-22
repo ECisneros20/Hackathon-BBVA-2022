@@ -33,13 +33,18 @@ peru = pd.read_csv(StringIO(peru_path))
 print(Fore.CYAN, end="")
 print(' Changing DTYPES to columns according to the DICTIONARY OF FIELDS'.center(columns))
 peru['Número de estacionamiento'] = peru['Número de estacionamiento'].astype('float64')
+
+
+
 peru['Área Terreno'] = peru['Área Terreno'].replace(',','', regex=True)
 peru['Área Terreno'] = peru['Área Terreno'].astype('float64')
 peru['Área Construcción'] = peru['Área Construcción'].replace(',','', regex=True)
 peru['Área Construcción'] = peru['Área Construcción'].astype('float64')
-peru['valor comercial (USD)'] = peru['Valor comercial (USD)'].astype('float64')
-
-peru = peru.rename(columns={peru.columns[19]: 'new'})
+peru['Valor comercial (USD)'] = peru['Valor comercial (USD)'].astype('float64')
+peru['Latitud (Decimal)'] = peru['Latitud (Decimal)'].replace(',','', regex=True)
+peru['Latitud (Decimal)'] = peru['Latitud (Decimal)'].astype('float64')
+peru['Longitud (Decimal)'] = peru['Longitud (Decimal)'].replace(',','', regex=True)
+peru['Longitud (Decimal)'] = peru['Longitud (Decimal)'].astype('float64')
 
 peru = peru.apply(lambda x: x.str.lower() if x.dtype == "object" else x)  
 
@@ -47,7 +52,6 @@ print('Drop columns with the most NAN values and unnecessary columns'.center(col
 
 peru = peru.drop(["Piso", "Elevador", "Posición", "Número de frentes"], axis=1)
 
-peru = peru.drop(peru.columns[15], axis=1)
 
 peru = peru.drop('Fecha entrega del Informe', axis=1)
 
@@ -64,6 +68,7 @@ peru['Estado de conservación'].fillna(peru['Estado de conservación'].mode().il
 peru['Método Representado'].fillna(peru['Método Representado'].mode().iloc[0], inplace=True)
 peru['Área Terreno'].fillna(peru['Área Terreno'].mode().iloc[0], inplace=True)
 peru['Área Construcción'].fillna(peru['Área Construcción'].mode().iloc[0], inplace=True)
+peru['Valor comercial (USD)'] = peru['Valor comercial (USD)'].astype('float64')
 
 print("Visualizing the correlations between numerical variables".center(columns))
 
