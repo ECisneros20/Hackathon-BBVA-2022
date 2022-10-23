@@ -13,5 +13,5 @@ jobs:
           source venv/bin/activate
       - name: Installing dependencies
         run: |
+          pip install dvc
           pip install 'dvc[s3]'
-          pip install -r requirements.txt
