@@ -1,0 +1,4 @@
+[core]
+    remote = dataset_track
+['remote "dataset_track"']
+    url = s3://hackaton2022/dataset

@@ -1,0 +1,9 @@
+                   Model           MAE  ...  R2 Score  RMSE (Cross-Validation)
+0       LinearRegression  3.810828e-11  ...  1.000000             4.794510e-10
+2        RidgeRegression  1.896259e-04  ...  0.992267             7.116900e-03
+1        LassoRegression  1.407511e-03  ... -0.000015             1.675538e-02
+3    ElasticNetRegressor  1.407514e-03  ... -0.000015             1.675563e-02
+4  RandomForestRegressor  1.234626e-03  ...  0.071415             2.239678e-02
+5           XGBRegressor  2.234946e-04  ...  0.837601             2.955743e-02
+
+[6 rows x 6 columns]

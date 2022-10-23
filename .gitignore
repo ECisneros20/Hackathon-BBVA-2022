@@ -1,0 +1,11 @@
+venv/
+-ipynb_checkpoints/
+*.json
+*.csv
+*.xlsx
+*.pkl
+*.joblib
+*.job
+/dataset.xlsx
+/dataset/*.joblib
+__pycache__/

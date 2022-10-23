@@ -1,0 +1,35 @@
+name: Continuous Training
+on:
+  push:
+    branches:
+      - workflow_continuous_training
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: Why to run this?
+        required: false
+        default: running CT
+jobs:
+  continuous-training:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Train model
+        run: |
+           pip3 install virtualenv
+           virtualenv venv
+           source venv/bin/activate
+           pip install -r requirements.txt
+           python3 src/train.py
+           echo "Training Completed"
+      - uses: iterative/setup-cml@v1
+      - name: Push metrics
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat report.txt >> report.md 
+          cml-publish *.png --md >> report.md
+          cml-send-comment report.md
