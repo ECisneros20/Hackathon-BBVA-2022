@@ -5,7 +5,6 @@ import sys
 import pandas as pd
 import seaborn as sns
 import numpy as np
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import Lasso
@@ -35,46 +34,19 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 logging.info("Loading prepared data")
-peru = pd.read_csv('dataset/prepared_data.csv')
 
-print(Fore.CYAN, end="")
-print("One hot encoding".center(columns))
+train = pd.read_csv('dataset/train.csv')
+test = pd.read_csv('dataset/test.csv')
+val = pd.read_csv('dataset/validation.csv')
+X_train = train.iloc[:,:-1]
+y_train = train.iloc[:,-1:]
 
-cat_cols = ["Departamento",
-            "Provincia" ,
-            "Distrito",
-            "Categoría del bien",
-            "Estado de conservación",
-            "Método Representado"]
-peru = pd.get_dummies(peru, columns=cat_cols)
+X_test = test.iloc[:,:-1]
+y_test = test.iloc[:,-1:]
 
+X = val.iloc[:,:-1]
+y = val.iloc[:,-1:]
 
-print("Splitting data X - y".center(columns))
-y = peru['Valor comercial (USD)']
-X = peru.drop(['Valor comercial (USD)'], axis=1)
-
-print("Standardizing the data".center(columns))
-
-important_num_cols = [
-    "Tipo de vía",
-    "Número de estacionamiento",
-    "Depósitos",
-    "Latitud (Decimal)",
-    "Longitud (Decimal)",
-    "Edad",
-    "Área Terreno",
-    "Área Construcción",
-]
-print("important_num_cols")
-scaler = StandardScaler()
-X[important_num_cols] = scaler.fit_transform(X[important_num_cols])
-
-print("Train-Test-Validation Split".center(columns))
-
-X_train, X_test, y_train, y_test = train_test_split(X, y,
-        test_size=0.2, random_state=42)
-X_train, X_val, y_train, y_val = train_test_split(X_train, y_train,
-        test_size=0.25, random_state=1)
 
 models = pd.DataFrame(columns=["Model", "MAE", "MSE", "RMSE", "R2 Score", "RMSE (Cross-Validation)"])
 
